@@ -1,2 +1,2 @@
-runtime: node
+runtime: nodejs10
 entrypoint: npm start
