@@ -16,6 +16,8 @@ if(config.enableCors) {
 	app.use(util.cors);
 }
 
+app.use('/api/items', routes.itemRoutes);
+
 util.db(() => {
 	
 });
