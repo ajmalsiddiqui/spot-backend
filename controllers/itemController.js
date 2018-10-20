@@ -91,7 +91,7 @@ exports.updateRating = (req, res) => {
 					} else {
 						item.rating = parseInt(req.query.rating);
 						item.save()
-							.then(() => resolve(response(200, "Successfully updated stock", item)))
+							.then(() => resolve(response(200, "Successfully updated rating", item)))
 							.catch(err => {
 								console.log(err);
 								reject(response(500, "Something went wrong", err));
