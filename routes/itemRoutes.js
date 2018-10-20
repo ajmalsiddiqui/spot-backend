@@ -28,8 +28,13 @@ router.get('/updateStock', (req, res) => {
 });
 
 router.get('/updateRating', (req, res) => {
-	console.log('hello')
 	itemController.updateRating(req, res)
+		.then(info => res.status(info.code).json(info))
+		.catch(err => res.status(err.code).json(err));
+});
+
+router.get('/category', (req, res) => {
+	itemController.getItemsOfCategory(req, res)
 		.then(info => res.status(info.code).json(info))
 		.catch(err => res.status(err.code).json(err));
 });

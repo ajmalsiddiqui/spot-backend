@@ -13,7 +13,9 @@ exports.addNewItem = (req, res) => {
 			description: req.body.description,
 			price: parseInt(req.body.price),
 			stockLeft: parseInt(req.body.stockLeft) || 0,
-			rating: parseInt(req.body.rating) || 0
+			rating: parseInt(req.body.rating) || 0,
+			category: req.body.category,
+			meta: req.body.meta || {}
 		});
 
 		newItem.save()
@@ -96,6 +98,20 @@ exports.updateRating = (req, res) => {
 							});
 					}
 				})
+		}
+	});
+}
+
+// GET items of a category
+exports.getItemsOfCategory = (req, res) => {
+	return new Promise((resolve, reject) => {
+		if(!req.query.category) {
+			reject(response(400, "No category specified", new Error('No category specified')));
+		} else {
+			Item.find({category: req.query.category})
+				.exec()
+				.then(items => resolve(response(200, "Found items", items)))
+				.catch(err => reject(response(500, "Something went wrong", err)));
 		}
 	});
 }

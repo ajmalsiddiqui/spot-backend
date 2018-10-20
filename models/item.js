@@ -29,6 +29,14 @@ const itemSchema = new Schema({
 		default: 0,
 		min: 1,
 		max: 5
+	},
+
+	category: {
+		type: String
+	},
+
+	meta: {
+		type: Object
 	}
 });
 
